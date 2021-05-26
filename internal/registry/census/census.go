@@ -7,9 +7,11 @@ import (
 )
 
 const (
-	RenewDuration        = 30 * time.Second
-	ScanEvictDuration    = 60 * time.Second
-	SelfProtectThreshold = 0.85
+	RenewDuration              = 30 * time.Second
+	ScanEvictDuration          = 60 * time.Second
+	InstanceExpiredDuration    = 90 * time.Second
+	InstanceMaxExpiredDuration = 900 * time.Second
+	SelfProtectThreshold       = 0.85
 )
 
 type Census struct {
