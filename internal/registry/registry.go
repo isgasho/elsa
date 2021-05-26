@@ -137,15 +137,29 @@ func (r *registry) Renew(segment, serviceName, ip string, port int32) (*Instance
 func (r *registry) evictLoop() {
 
 	scanTicker := time.Tick(census.ScanEvictDuration)
-
+	resetTicker := time.Tick(census.ResetNeedCountDuration)
 	for {
 
 		select {
 		case <-scanTicker:
 			r.c.ResetCount()
 			r.evict()
+		case <-resetTicker:
+			r.resetNeedCount()
 		}
 	}
+
+}
+
+// reset need count
+func (r *registry) resetNeedCount() {
+	apps := r.getApplications()
+	var count int64
+	for _, app := range apps {
+		count += int64(len(app.instances))
+	}
+	log.Printf("reset need count :%d", count)
+	r.c.ResetNeedCount(count)
 
 }
 

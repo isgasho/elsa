@@ -10,7 +10,8 @@ const (
 	RenewDuration              = 30 * time.Second
 	ScanEvictDuration          = 60 * time.Second
 	InstanceExpiredDuration    = 90 * time.Second
-	InstanceMaxExpiredDuration = 900 * time.Second
+	InstanceMaxExpiredDuration = 1800 * time.Second
+	ResetNeedCountDuration     = 900 * time.Second
 	SelfProtectThreshold       = 0.85
 )
 
@@ -41,6 +42,13 @@ func (c *Census) DecrNeedCount() {
 	c.Lock()
 	defer c.Unlock()
 	c.needCount -= int64(float64(ScanEvictDuration) / float64(RenewDuration))
+	c.threshold = int64(float64(c.needCount) * SelfProtectThreshold)
+}
+
+func (c *Census) ResetNeedCount(count int64) {
+	c.Lock()
+	defer c.Unlock()
+	c.needCount = count * int64(float64(ScanEvictDuration)/float64(RenewDuration))
 	c.threshold = int64(float64(c.needCount) * SelfProtectThreshold)
 }
 
