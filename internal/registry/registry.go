@@ -138,8 +138,8 @@ func (r *registry) evictLoop() {
 
 	scanTicker := time.Tick(census.ScanEvictDuration)
 	resetTicker := time.Tick(census.ResetNeedCountDuration)
+	log.Printf("the evict loop task start success...")
 	for {
-
 		select {
 		case <-scanTicker:
 			r.c.ResetCount()

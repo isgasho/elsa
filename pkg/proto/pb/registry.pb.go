@@ -154,6 +154,344 @@ func (m *RegisterResponse) GetInstance() *ServiceInstance {
 	return nil
 }
 
+type FetchRequest struct {
+	Segment              string   `protobuf:"bytes,1,opt,name=segment,proto3" json:"segment,omitempty"`
+	ServiceName          string   `protobuf:"bytes,2,opt,name=serviceName,proto3" json:"serviceName,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *FetchRequest) Reset()         { *m = FetchRequest{} }
+func (m *FetchRequest) String() string { return proto.CompactTextString(m) }
+func (*FetchRequest) ProtoMessage()    {}
+func (*FetchRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_41af05d40a615591, []int{2}
+}
+
+func (m *FetchRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FetchRequest.Unmarshal(m, b)
+}
+func (m *FetchRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FetchRequest.Marshal(b, m, deterministic)
+}
+func (m *FetchRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FetchRequest.Merge(m, src)
+}
+func (m *FetchRequest) XXX_Size() int {
+	return xxx_messageInfo_FetchRequest.Size(m)
+}
+func (m *FetchRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_FetchRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FetchRequest proto.InternalMessageInfo
+
+func (m *FetchRequest) GetSegment() string {
+	if m != nil {
+		return m.Segment
+	}
+	return ""
+}
+
+func (m *FetchRequest) GetServiceName() string {
+	if m != nil {
+		return m.ServiceName
+	}
+	return ""
+}
+
+type FetchResponse struct {
+	Code                 int32              `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
+	Message              string             `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Instance             []*ServiceInstance `protobuf:"bytes,3,rep,name=instance,proto3" json:"instance,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
+	XXX_unrecognized     []byte             `json:"-"`
+	XXX_sizecache        int32              `json:"-"`
+}
+
+func (m *FetchResponse) Reset()         { *m = FetchResponse{} }
+func (m *FetchResponse) String() string { return proto.CompactTextString(m) }
+func (*FetchResponse) ProtoMessage()    {}
+func (*FetchResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_41af05d40a615591, []int{3}
+}
+
+func (m *FetchResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FetchResponse.Unmarshal(m, b)
+}
+func (m *FetchResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FetchResponse.Marshal(b, m, deterministic)
+}
+func (m *FetchResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FetchResponse.Merge(m, src)
+}
+func (m *FetchResponse) XXX_Size() int {
+	return xxx_messageInfo_FetchResponse.Size(m)
+}
+func (m *FetchResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_FetchResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FetchResponse proto.InternalMessageInfo
+
+func (m *FetchResponse) GetCode() int32 {
+	if m != nil {
+		return m.Code
+	}
+	return 0
+}
+
+func (m *FetchResponse) GetMessage() string {
+	if m != nil {
+		return m.Message
+	}
+	return ""
+}
+
+func (m *FetchResponse) GetInstance() []*ServiceInstance {
+	if m != nil {
+		return m.Instance
+	}
+	return nil
+}
+
+type RenewRequest struct {
+	Segment              string   `protobuf:"bytes,1,opt,name=segment,proto3" json:"segment,omitempty"`
+	ServiceName          string   `protobuf:"bytes,2,opt,name=serviceName,proto3" json:"serviceName,omitempty"`
+	Ip                   string   `protobuf:"bytes,3,opt,name=ip,proto3" json:"ip,omitempty"`
+	Port                 int32    `protobuf:"varint,4,opt,name=port,proto3" json:"port,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *RenewRequest) Reset()         { *m = RenewRequest{} }
+func (m *RenewRequest) String() string { return proto.CompactTextString(m) }
+func (*RenewRequest) ProtoMessage()    {}
+func (*RenewRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_41af05d40a615591, []int{4}
+}
+
+func (m *RenewRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RenewRequest.Unmarshal(m, b)
+}
+func (m *RenewRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RenewRequest.Marshal(b, m, deterministic)
+}
+func (m *RenewRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RenewRequest.Merge(m, src)
+}
+func (m *RenewRequest) XXX_Size() int {
+	return xxx_messageInfo_RenewRequest.Size(m)
+}
+func (m *RenewRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_RenewRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RenewRequest proto.InternalMessageInfo
+
+func (m *RenewRequest) GetSegment() string {
+	if m != nil {
+		return m.Segment
+	}
+	return ""
+}
+
+func (m *RenewRequest) GetServiceName() string {
+	if m != nil {
+		return m.ServiceName
+	}
+	return ""
+}
+
+func (m *RenewRequest) GetIp() string {
+	if m != nil {
+		return m.Ip
+	}
+	return ""
+}
+
+func (m *RenewRequest) GetPort() int32 {
+	if m != nil {
+		return m.Port
+	}
+	return 0
+}
+
+type RenewResponse struct {
+	Code                 int32            `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
+	Message              string           `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Instance             *ServiceInstance `protobuf:"bytes,3,opt,name=instance,proto3" json:"instance,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
+}
+
+func (m *RenewResponse) Reset()         { *m = RenewResponse{} }
+func (m *RenewResponse) String() string { return proto.CompactTextString(m) }
+func (*RenewResponse) ProtoMessage()    {}
+func (*RenewResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_41af05d40a615591, []int{5}
+}
+
+func (m *RenewResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RenewResponse.Unmarshal(m, b)
+}
+func (m *RenewResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RenewResponse.Marshal(b, m, deterministic)
+}
+func (m *RenewResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RenewResponse.Merge(m, src)
+}
+func (m *RenewResponse) XXX_Size() int {
+	return xxx_messageInfo_RenewResponse.Size(m)
+}
+func (m *RenewResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_RenewResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RenewResponse proto.InternalMessageInfo
+
+func (m *RenewResponse) GetCode() int32 {
+	if m != nil {
+		return m.Code
+	}
+	return 0
+}
+
+func (m *RenewResponse) GetMessage() string {
+	if m != nil {
+		return m.Message
+	}
+	return ""
+}
+
+func (m *RenewResponse) GetInstance() *ServiceInstance {
+	if m != nil {
+		return m.Instance
+	}
+	return nil
+}
+
+type CancelRequest struct {
+	Segment              string   `protobuf:"bytes,1,opt,name=segment,proto3" json:"segment,omitempty"`
+	ServiceName          string   `protobuf:"bytes,2,opt,name=serviceName,proto3" json:"serviceName,omitempty"`
+	Ip                   string   `protobuf:"bytes,3,opt,name=ip,proto3" json:"ip,omitempty"`
+	Port                 int32    `protobuf:"varint,4,opt,name=port,proto3" json:"port,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CancelRequest) Reset()         { *m = CancelRequest{} }
+func (m *CancelRequest) String() string { return proto.CompactTextString(m) }
+func (*CancelRequest) ProtoMessage()    {}
+func (*CancelRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_41af05d40a615591, []int{6}
+}
+
+func (m *CancelRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CancelRequest.Unmarshal(m, b)
+}
+func (m *CancelRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CancelRequest.Marshal(b, m, deterministic)
+}
+func (m *CancelRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CancelRequest.Merge(m, src)
+}
+func (m *CancelRequest) XXX_Size() int {
+	return xxx_messageInfo_CancelRequest.Size(m)
+}
+func (m *CancelRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CancelRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CancelRequest proto.InternalMessageInfo
+
+func (m *CancelRequest) GetSegment() string {
+	if m != nil {
+		return m.Segment
+	}
+	return ""
+}
+
+func (m *CancelRequest) GetServiceName() string {
+	if m != nil {
+		return m.ServiceName
+	}
+	return ""
+}
+
+func (m *CancelRequest) GetIp() string {
+	if m != nil {
+		return m.Ip
+	}
+	return ""
+}
+
+func (m *CancelRequest) GetPort() int32 {
+	if m != nil {
+		return m.Port
+	}
+	return 0
+}
+
+type CancelResponse struct {
+	Code                 int32            `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
+	Message              string           `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Instance             *ServiceInstance `protobuf:"bytes,3,opt,name=instance,proto3" json:"instance,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
+}
+
+func (m *CancelResponse) Reset()         { *m = CancelResponse{} }
+func (m *CancelResponse) String() string { return proto.CompactTextString(m) }
+func (*CancelResponse) ProtoMessage()    {}
+func (*CancelResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_41af05d40a615591, []int{7}
+}
+
+func (m *CancelResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CancelResponse.Unmarshal(m, b)
+}
+func (m *CancelResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CancelResponse.Marshal(b, m, deterministic)
+}
+func (m *CancelResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CancelResponse.Merge(m, src)
+}
+func (m *CancelResponse) XXX_Size() int {
+	return xxx_messageInfo_CancelResponse.Size(m)
+}
+func (m *CancelResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CancelResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CancelResponse proto.InternalMessageInfo
+
+func (m *CancelResponse) GetCode() int32 {
+	if m != nil {
+		return m.Code
+	}
+	return 0
+}
+
+func (m *CancelResponse) GetMessage() string {
+	if m != nil {
+		return m.Message
+	}
+	return ""
+}
+
+func (m *CancelResponse) GetInstance() *ServiceInstance {
+	if m != nil {
+		return m.Instance
+	}
+	return nil
+}
+
 type ServiceInstance struct {
 	Segment              string            `protobuf:"bytes,1,opt,name=segment,proto3" json:"segment,omitempty"`
 	ServiceName          string            `protobuf:"bytes,2,opt,name=serviceName,proto3" json:"serviceName,omitempty"`
@@ -174,7 +512,7 @@ func (m *ServiceInstance) Reset()         { *m = ServiceInstance{} }
 func (m *ServiceInstance) String() string { return proto.CompactTextString(m) }
 func (*ServiceInstance) ProtoMessage()    {}
 func (*ServiceInstance) Descriptor() ([]byte, []int) {
-	return fileDescriptor_41af05d40a615591, []int{2}
+	return fileDescriptor_41af05d40a615591, []int{8}
 }
 
 func (m *ServiceInstance) XXX_Unmarshal(b []byte) error {
@@ -269,6 +607,12 @@ func init() {
 	proto.RegisterEnum("com.busgo.registry.proto.ActionType", ActionType_name, ActionType_value)
 	proto.RegisterType((*RegisterRequest)(nil), "com.busgo.registry.proto.RegisterRequest")
 	proto.RegisterType((*RegisterResponse)(nil), "com.busgo.registry.proto.RegisterResponse")
+	proto.RegisterType((*FetchRequest)(nil), "com.busgo.registry.proto.FetchRequest")
+	proto.RegisterType((*FetchResponse)(nil), "com.busgo.registry.proto.FetchResponse")
+	proto.RegisterType((*RenewRequest)(nil), "com.busgo.registry.proto.RenewRequest")
+	proto.RegisterType((*RenewResponse)(nil), "com.busgo.registry.proto.RenewResponse")
+	proto.RegisterType((*CancelRequest)(nil), "com.busgo.registry.proto.CancelRequest")
+	proto.RegisterType((*CancelResponse)(nil), "com.busgo.registry.proto.CancelResponse")
 	proto.RegisterType((*ServiceInstance)(nil), "com.busgo.registry.proto.ServiceInstance")
 	proto.RegisterMapType((map[string]string)(nil), "com.busgo.registry.proto.ServiceInstance.MetadataEntry")
 }
@@ -276,35 +620,42 @@ func init() {
 func init() { proto.RegisterFile("registry.proto", fileDescriptor_41af05d40a615591) }
 
 var fileDescriptor_41af05d40a615591 = []byte{
-	// 443 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x93, 0xc1, 0x8e, 0xd3, 0x30,
-	0x10, 0x86, 0x49, 0xd2, 0x76, 0xd3, 0x29, 0xb4, 0xd1, 0x88, 0x43, 0xb4, 0xa7, 0xa8, 0x42, 0x28,
-	0xec, 0x21, 0x87, 0xee, 0x01, 0x04, 0x5c, 0x40, 0xda, 0x03, 0x07, 0x7a, 0xf0, 0xee, 0x89, 0x9b,
-	0x9b, 0x8e, 0x22, 0x8b, 0x26, 0x36, 0xb6, 0xbb, 0x28, 0x4f, 0xc0, 0x1b, 0xf0, 0x42, 0xbc, 0x18,
-	0x8a, 0x93, 0x6c, 0x36, 0x95, 0x16, 0x55, 0xdc, 0xec, 0x7f, 0xbe, 0x3f, 0xfe, 0xc7, 0x19, 0xc3,
-	0x52, 0x53, 0x21, 0x8c, 0xd5, 0x75, 0xa6, 0xb4, 0xb4, 0x12, 0xe3, 0x5c, 0x96, 0xd9, 0xee, 0x68,
-	0x0a, 0x99, 0x8d, 0x2b, 0xeb, 0xdf, 0x1e, 0xac, 0x98, 0x93, 0x48, 0x33, 0xfa, 0x71, 0x24, 0x63,
-	0xf1, 0x23, 0xcc, 0x78, 0x6e, 0x85, 0xac, 0x62, 0x2f, 0xf1, 0xd2, 0xe5, 0xe6, 0x55, 0xf6, 0x94,
-	0x3d, 0xfb, 0xe4, 0xb8, 0xbb, 0x5a, 0x11, 0xeb, 0x3c, 0x78, 0x03, 0xa1, 0xa8, 0x8c, 0xe5, 0x55,
-	0x4e, 0xb1, 0x9f, 0x78, 0xe9, 0x62, 0xf3, 0xe6, 0x69, 0xff, 0x2d, 0xe9, 0x7b, 0x91, 0xd3, 0x97,
-	0xce, 0xc0, 0x1e, 0xac, 0xeb, 0x5f, 0x1e, 0x44, 0x43, 0x30, 0xa3, 0x64, 0x65, 0x08, 0x11, 0x26,
-	0xb9, 0xdc, 0x93, 0xcb, 0x35, 0x65, 0x6e, 0x8d, 0x31, 0x5c, 0x94, 0x64, 0x0c, 0x2f, 0xda, 0xe3,
-	0xe6, 0xac, 0xdf, 0x8e, 0x92, 0x04, 0xff, 0x9f, 0xe4, 0x4f, 0x00, 0xab, 0x93, 0x6a, 0x73, 0xa8,
-	0xa1, 0xa2, 0xa4, 0xca, 0xba, 0x2c, 0x73, 0xd6, 0x6f, 0x31, 0x81, 0x85, 0x69, 0xe1, 0x2d, 0x2f,
-	0xfb, 0x48, 0x8f, 0x25, 0x5c, 0x82, 0x2f, 0x94, 0x0b, 0x34, 0x67, 0xbe, 0x50, 0x4d, 0x53, 0x4a,
-	0x6a, 0x1b, 0x4f, 0xda, 0xa6, 0x9a, 0x35, 0xde, 0x42, 0x58, 0x92, 0xe5, 0x7b, 0x6e, 0x79, 0x3c,
-	0x4d, 0x82, 0x74, 0xb1, 0x79, 0x7b, 0x76, 0xf4, 0xec, 0x6b, 0xe7, 0xbc, 0xa9, 0xac, 0xae, 0xd9,
-	0xc3, 0x87, 0x70, 0x0d, 0xcf, 0x35, 0x15, 0x77, 0xa2, 0x24, 0x63, 0x79, 0xa9, 0xe2, 0x59, 0xe2,
-	0xa5, 0x01, 0x1b, 0x69, 0x4d, 0xfc, 0xa3, 0x1a, 0x90, 0x0b, 0x87, 0x3c, 0x96, 0xf0, 0x75, 0x33,
-	0x5d, 0x15, 0xfd, 0x1c, 0xa0, 0xd0, 0x41, 0x27, 0x6a, 0xc3, 0xed, 0x85, 0xb6, 0xf5, 0xc0, 0xcd,
-	0x5b, 0x6e, 0xac, 0x62, 0x0a, 0xab, 0x03, 0xb7, 0x64, 0xec, 0x00, 0x82, 0x03, 0x4f, 0xe5, 0xcb,
-	0x0f, 0xf0, 0x62, 0xd4, 0x1a, 0x46, 0x10, 0x7c, 0xa7, 0xba, 0xfb, 0x03, 0xcd, 0x12, 0x5f, 0xc2,
-	0xf4, 0x9e, 0x1f, 0x8e, 0xfd, 0xbd, 0xb7, 0x9b, 0xf7, 0xfe, 0x3b, 0xef, 0xea, 0x1a, 0x60, 0x18,
-	0x56, 0x0c, 0x61, 0xb2, 0x95, 0x15, 0x45, 0xcf, 0x10, 0x60, 0xb6, 0x95, 0xba, 0xe4, 0x87, 0xc8,
-	0xc3, 0x15, 0x2c, 0x18, 0xa9, 0x83, 0xc8, 0x79, 0x03, 0x46, 0xfe, 0xc6, 0xf6, 0x8f, 0x43, 0xd7,
-	0xdd, 0x25, 0x23, 0x87, 0x50, 0x77, 0x63, 0x89, 0xff, 0x18, 0xa7, 0x93, 0x37, 0x75, 0x79, 0x75,
-	0x0e, 0xda, 0x4e, 0xf9, 0xe7, 0xc9, 0x37, 0x5f, 0xed, 0x76, 0x33, 0x57, 0xbd, 0xfe, 0x1b, 0x00,
-	0x00, 0xff, 0xff, 0x8f, 0xca, 0x29, 0x95, 0xcc, 0x03, 0x00, 0x00,
+	// 553 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x55, 0xcd, 0x6e, 0xd3, 0x4c,
+	0x14, 0xfd, 0x6c, 0xe7, 0xf7, 0xe6, 0x57, 0x57, 0xdf, 0xc2, 0xca, 0x2a, 0x8a, 0x50, 0x09, 0x5d,
+	0x78, 0x91, 0x2e, 0x40, 0xc0, 0x06, 0x50, 0x91, 0x40, 0x22, 0x8b, 0x69, 0x17, 0x08, 0x56, 0x13,
+	0xe7, 0x12, 0x2c, 0x62, 0x8f, 0x99, 0x99, 0xb4, 0xf2, 0x9e, 0x8a, 0x37, 0xe0, 0x85, 0x78, 0x31,
+	0xe4, 0xb1, 0x5d, 0xc7, 0x91, 0x92, 0x56, 0x55, 0xa1, 0xbb, 0x99, 0x3b, 0xe7, 0xdc, 0x39, 0x67,
+	0x66, 0x7c, 0x0c, 0x7d, 0x49, 0xab, 0x40, 0x69, 0x99, 0x78, 0xb1, 0x14, 0x5a, 0xa0, 0xeb, 0x8b,
+	0xd0, 0x5b, 0x6c, 0xd4, 0x4a, 0x78, 0xd5, 0x95, 0xc9, 0x2f, 0x0b, 0x06, 0xcc, 0x94, 0x48, 0x32,
+	0xfa, 0xbe, 0x21, 0xa5, 0xf1, 0x25, 0x34, 0xb8, 0xaf, 0x03, 0x11, 0xb9, 0xd6, 0xd8, 0x9a, 0xf6,
+	0x67, 0x8f, 0xbc, 0x7d, 0x74, 0xef, 0x95, 0xc1, 0x9d, 0x27, 0x31, 0xb1, 0x9c, 0x83, 0xa7, 0xd0,
+	0x0a, 0x22, 0xa5, 0x79, 0xe4, 0x93, 0x6b, 0x8f, 0xad, 0x69, 0x67, 0xf6, 0x64, 0x3f, 0xff, 0x8c,
+	0xe4, 0x45, 0xe0, 0xd3, 0xbb, 0x9c, 0xc0, 0xae, 0xa9, 0x93, 0x9f, 0x16, 0x0c, 0x4b, 0x61, 0x2a,
+	0x16, 0x91, 0x22, 0x44, 0xa8, 0xf9, 0x62, 0x49, 0x46, 0x57, 0x9d, 0x99, 0x31, 0xba, 0xd0, 0x0c,
+	0x49, 0x29, 0xbe, 0xca, 0xb6, 0x6b, 0xb3, 0x62, 0x5a, 0x51, 0xe2, 0xdc, 0x5d, 0xc9, 0x7b, 0xe8,
+	0xbe, 0x25, 0xed, 0x7f, 0x2d, 0x8e, 0xc7, 0x85, 0xa6, 0xa2, 0x55, 0x48, 0x91, 0x36, 0x3a, 0xda,
+	0xac, 0x98, 0xe2, 0x18, 0x3a, 0x2a, 0x6b, 0x33, 0xe7, 0x61, 0x21, 0x67, 0xbb, 0x34, 0xf9, 0x61,
+	0x41, 0x2f, 0x6f, 0x76, 0x0f, 0x96, 0x9c, 0xbb, 0x5a, 0x8a, 0xa0, 0xcb, 0x28, 0xa2, 0xcb, 0x7b,
+	0xb0, 0x84, 0x7d, 0xb0, 0x83, 0xd8, 0x9c, 0x6f, 0x9b, 0xd9, 0x41, 0x9c, 0x1a, 0x8a, 0x85, 0xd4,
+	0x6e, 0x2d, 0x33, 0x94, 0x8e, 0x8d, 0xed, 0x7c, 0xc3, 0x87, 0xbc, 0x49, 0x01, 0xbd, 0x37, 0xe9,
+	0x60, 0xfd, 0xaf, 0x7c, 0x5f, 0x59, 0xd0, 0x2f, 0x76, 0x7c, 0x48, 0xe3, 0xbf, 0x1d, 0x18, 0xec,
+	0xac, 0xfe, 0x6d, 0xef, 0x78, 0x06, 0xad, 0x90, 0x34, 0x5f, 0x72, 0xcd, 0xdd, 0xba, 0x79, 0xaa,
+	0x4f, 0x6f, 0x2d, 0xdd, 0xfb, 0x90, 0x33, 0x4f, 0x23, 0x2d, 0x13, 0x76, 0xdd, 0x08, 0x27, 0xd0,
+	0x95, 0xb4, 0x3a, 0x0f, 0x42, 0x52, 0x9a, 0x87, 0xb1, 0xdb, 0x18, 0x5b, 0x53, 0x87, 0x55, 0x6a,
+	0xa9, 0xfc, 0x4d, 0x5c, 0x42, 0x9a, 0x06, 0xb2, 0x5d, 0xc2, 0xa3, 0x34, 0x20, 0x23, 0xba, 0x2c,
+	0x41, 0x2d, 0x03, 0xda, 0xa9, 0xa6, 0xb8, 0x65, 0x20, 0x75, 0x52, 0xe2, 0xda, 0x19, 0xae, 0x5a,
+	0xc5, 0x29, 0x0c, 0xd6, 0x5c, 0x93, 0xd2, 0x25, 0x10, 0x0c, 0x70, 0xb7, 0x3c, 0x7a, 0x01, 0xbd,
+	0x8a, 0x35, 0x1c, 0x82, 0xf3, 0x8d, 0x92, 0xfc, 0x06, 0xd2, 0x21, 0xfe, 0x0f, 0xf5, 0x0b, 0xbe,
+	0xde, 0x14, 0xe7, 0x9e, 0x4d, 0x9e, 0xdb, 0xcf, 0xac, 0xe3, 0x13, 0x80, 0x32, 0x6f, 0xb1, 0x05,
+	0xb5, 0xb9, 0x88, 0x68, 0xf8, 0x1f, 0x02, 0x34, 0xe6, 0x42, 0x86, 0x7c, 0x3d, 0xb4, 0x70, 0x00,
+	0x1d, 0x46, 0xf1, 0x3a, 0xf0, 0x79, 0x0a, 0x1c, 0xda, 0xb3, 0x2b, 0xa7, 0x08, 0x78, 0x99, 0xe4,
+	0xa7, 0x8c, 0x1c, 0x5a, 0x32, 0x8f, 0x56, 0x3c, 0xf0, 0x9e, 0x76, 0xfe, 0x0b, 0xa3, 0xe3, 0xdb,
+	0x40, 0xf3, 0x67, 0xfe, 0x11, 0xea, 0x5f, 0xd2, 0x9c, 0xc3, 0xa3, 0xfd, 0xa4, 0xed, 0x54, 0x1d,
+	0x3d, 0xbe, 0x11, 0x57, 0x76, 0x36, 0xd7, 0x74, 0xa8, 0xf3, 0x76, 0xb8, 0x1d, 0xea, 0x5c, 0xcd,
+	0xa4, 0xcf, 0xd0, 0xf0, 0xcd, 0xc7, 0x8a, 0x07, 0x28, 0x95, 0x00, 0x19, 0x4d, 0x6f, 0x06, 0x66,
+	0xcd, 0x5f, 0xd7, 0x3e, 0xd9, 0xf1, 0x62, 0xd1, 0x30, 0x6b, 0x27, 0x7f, 0x02, 0x00, 0x00, 0xff,
+	0xff, 0x02, 0x4d, 0x87, 0x8e, 0xa1, 0x07, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -321,6 +672,12 @@ const _ = grpc.SupportPackageIsVersion4
 type RegistryServiceClient interface {
 	// register a service instance
 	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
+	// fetch the instance with segment and service name
+	Fetch(ctx context.Context, in *FetchRequest, opts ...grpc.CallOption) (*FetchResponse, error)
+	// renew the instance
+	Renew(ctx context.Context, in *RenewRequest, opts ...grpc.CallOption) (*RenewResponse, error)
+	// cancel the instance
+	Cancel(ctx context.Context, in *CancelRequest, opts ...grpc.CallOption) (*CancelResponse, error)
 }
 
 type registryServiceClient struct {
@@ -340,10 +697,43 @@ func (c *registryServiceClient) Register(ctx context.Context, in *RegisterReques
 	return out, nil
 }
 
+func (c *registryServiceClient) Fetch(ctx context.Context, in *FetchRequest, opts ...grpc.CallOption) (*FetchResponse, error) {
+	out := new(FetchResponse)
+	err := c.cc.Invoke(ctx, "/com.busgo.registry.proto.RegistryService/fetch", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *registryServiceClient) Renew(ctx context.Context, in *RenewRequest, opts ...grpc.CallOption) (*RenewResponse, error) {
+	out := new(RenewResponse)
+	err := c.cc.Invoke(ctx, "/com.busgo.registry.proto.RegistryService/renew", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *registryServiceClient) Cancel(ctx context.Context, in *CancelRequest, opts ...grpc.CallOption) (*CancelResponse, error) {
+	out := new(CancelResponse)
+	err := c.cc.Invoke(ctx, "/com.busgo.registry.proto.RegistryService/cancel", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RegistryServiceServer is the server API for RegistryService service.
 type RegistryServiceServer interface {
 	// register a service instance
 	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
+	// fetch the instance with segment and service name
+	Fetch(context.Context, *FetchRequest) (*FetchResponse, error)
+	// renew the instance
+	Renew(context.Context, *RenewRequest) (*RenewResponse, error)
+	// cancel the instance
+	Cancel(context.Context, *CancelRequest) (*CancelResponse, error)
 }
 
 // UnimplementedRegistryServiceServer can be embedded to have forward compatible implementations.
@@ -352,6 +742,15 @@ type UnimplementedRegistryServiceServer struct {
 
 func (*UnimplementedRegistryServiceServer) Register(ctx context.Context, req *RegisterRequest) (*RegisterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Register not implemented")
+}
+func (*UnimplementedRegistryServiceServer) Fetch(ctx context.Context, req *FetchRequest) (*FetchResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Fetch not implemented")
+}
+func (*UnimplementedRegistryServiceServer) Renew(ctx context.Context, req *RenewRequest) (*RenewResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Renew not implemented")
+}
+func (*UnimplementedRegistryServiceServer) Cancel(ctx context.Context, req *CancelRequest) (*CancelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Cancel not implemented")
 }
 
 func RegisterRegistryServiceServer(s *grpc.Server, srv RegistryServiceServer) {
@@ -376,6 +775,60 @@ func _RegistryService_Register_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RegistryService_Fetch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FetchRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RegistryServiceServer).Fetch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/com.busgo.registry.proto.RegistryService/Fetch",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RegistryServiceServer).Fetch(ctx, req.(*FetchRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RegistryService_Renew_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RenewRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RegistryServiceServer).Renew(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/com.busgo.registry.proto.RegistryService/Renew",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RegistryServiceServer).Renew(ctx, req.(*RenewRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RegistryService_Cancel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CancelRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RegistryServiceServer).Cancel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/com.busgo.registry.proto.RegistryService/Cancel",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RegistryServiceServer).Cancel(ctx, req.(*CancelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _RegistryService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "com.busgo.registry.proto.RegistryService",
 	HandlerType: (*RegistryServiceServer)(nil),
@@ -383,6 +836,18 @@ var _RegistryService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "register",
 			Handler:    _RegistryService_Register_Handler,
+		},
+		{
+			MethodName: "fetch",
+			Handler:    _RegistryService_Fetch_Handler,
+		},
+		{
+			MethodName: "renew",
+			Handler:    _RegistryService_Renew_Handler,
+		},
+		{
+			MethodName: "cancel",
+			Handler:    _RegistryService_Cancel_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
