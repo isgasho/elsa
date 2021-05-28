@@ -58,7 +58,7 @@ func (r *RegistryServer) Fetch(ctx context.Context, request *pb.FetchRequest) (*
 
 	instances, err := r.registry.Fetch(request.Segment, request.ServiceName)
 	if err != nil {
-		e := err.(registry.RegistryError)
+		e := err.(*registry.RegistryError)
 		log.Printf("fetch fail:%s", err.Error())
 		return &pb.FetchResponse{
 			Code:      e.Code,
@@ -85,7 +85,7 @@ func (r *RegistryServer) Renew(ctx context.Context, request *pb.RenewRequest) (*
 
 	in, err := r.registry.Renew(request.Segment, request.ServiceName, request.Ip, request.Port)
 	if err != nil {
-		e := err.(registry.RegistryError)
+		e := err.(*registry.RegistryError)
 		return &pb.RenewResponse{
 			Code:    e.Code,
 			Message: e.Error(),
@@ -102,7 +102,7 @@ func (r *RegistryServer) Renew(ctx context.Context, request *pb.RenewRequest) (*
 func (r *RegistryServer) Cancel(ctx context.Context, request *pb.CancelRequest) (*pb.CancelResponse, error) {
 	in, err := r.registry.Cancel(request.Segment, request.ServiceName, request.Ip, request.Port)
 	if err != nil {
-		e := err.(registry.RegistryError)
+		e := err.(*registry.RegistryError)
 		return &pb.CancelResponse{
 			Code:    e.Code,
 			Message: e.Error(),

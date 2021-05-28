@@ -66,6 +66,26 @@ func main() {
 
 		for {
 
+			in, err := client.Renew(context.Background(), &pb.RenewRequest{
+				Segment:     "dev",
+				ServiceName: "com.busgo.trade.proto.TradeService",
+				Ip:          "192.168.1.1",
+				Port:        8001,
+			})
+
+			if err != nil {
+				panic(err)
+			}
+			log.Printf("renew the instance success %#v", in)
+			time.Sleep(time.Second * 30)
+		}
+
+	}()
+
+	go func() {
+
+		for {
+
 			response, err := client.Fetch(context.Background(), &pb.FetchRequest{
 				Segment:     "dev",
 				ServiceName: "com.busgo.trade.proto.TradeService",
