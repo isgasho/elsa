@@ -41,8 +41,16 @@ func (rs *RegistryServer) Start() error {
 }
 
 // register a service instance
-func (rs *RegistryServer) Register(context.Context, *pb.RegisterRequest) (*pb.RegisterResponse, error) {
-	return nil, nil
+func (rs *RegistryServer) Register(ctx context.Context, request *pb.RegisterRequest) (*pb.RegisterResponse, error) {
+
+	instance := registry.NewInstance(request.Instance)
+
+	in, _ := rs.r.Register(instance)
+	return &pb.RegisterResponse{
+		Code:     0,
+		Message:  "success",
+		Instance: registry.NewServiceInstance(in),
+	}, nil
 }
 
 // fetch the instance with segment and service name
