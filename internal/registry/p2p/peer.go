@@ -3,8 +3,10 @@ package p2p
 import (
 	"context"
 	"github.com/busgo/elsa/pkg/proto/pb"
+	"github.com/busgo/elsa/pkg/utils"
 	"google.golang.org/grpc"
 	"log"
+	"strings"
 )
 
 type SyncType int32
@@ -32,6 +34,7 @@ type PeerPool struct {
 type Peer struct {
 	endpoint string
 	cli      pb.RegistryServiceClient
+	local    bool
 }
 
 // new a peer pool
@@ -98,6 +101,9 @@ func (pool *PeerPool) handleSyncMessage(message *SyncMessage) {
 func (pool *PeerPool) reg(request *pb.RegisterRequest) {
 
 	for _, p := range pool.peers {
+		if p.local {
+			continue
+		}
 		in, err := p.cli.Register(context.Background(), request)
 		if err != nil {
 			log.Printf("the sync register service instance  fail:%#v", err)
@@ -111,6 +117,9 @@ func (pool *PeerPool) reg(request *pb.RegisterRequest) {
 func (pool *PeerPool) renew(request *pb.RenewRequest) {
 
 	for _, p := range pool.peers {
+		if p.local {
+			continue
+		}
 		in, err := p.cli.Renew(context.Background(), request)
 		if err != nil {
 			log.Printf("the sync renew service instance  fail:%#v", err)
@@ -124,6 +133,9 @@ func (pool *PeerPool) renew(request *pb.RenewRequest) {
 func (pool *PeerPool) cancel(request *pb.CancelRequest) {
 
 	for _, p := range pool.peers {
+		if p.local {
+			continue
+		}
 		in, err := p.cli.Cancel(context.Background(), request)
 		if err != nil {
 			log.Printf("the sync cancel service instance  fail:%#v", err)
@@ -140,9 +152,11 @@ func NewPeer(endpoint string) (*Peer, error) {
 	if err != nil {
 		return nil, err
 	}
-
 	return &Peer{
 		endpoint: endpoint,
 		cli:      pb.NewRegistryServiceClient(cc),
+		local: strings.HasPrefix(endpoint, utils.LocalIPAddress()) ||
+			strings.HasPrefix(endpoint, "127.0.0.1") ||
+			strings.HasPrefix(endpoint, "localhost"),
 	}, nil
 }
