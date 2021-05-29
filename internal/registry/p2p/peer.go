@@ -65,6 +65,7 @@ func (pool *PeerPool) PushSyncMessage(message *SyncMessage) {
 // lookup the sync message chan
 func (pool *PeerPool) lookup() {
 
+	log.Printf("the peer pool start lookup success...")
 	for {
 		select {
 		case message, ok := <-pool.syncMsgChan:
