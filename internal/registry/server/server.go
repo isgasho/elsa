@@ -3,25 +3,55 @@ package server
 import (
 	"context"
 	"github.com/busgo/elsa/internal/registry"
+	"github.com/busgo/elsa/internal/registry/p2p"
 	"github.com/busgo/elsa/pkg/proto/pb"
+	"github.com/busgo/elsa/pkg/utils"
 	"google.golang.org/grpc"
 	"log"
 	"net"
+	"strings"
+)
+
+const (
+	DefaultEndpoint = "127.0.0.1:8005"
 )
 
 type RegistryServer struct {
 	server   *grpc.Server
 	registry registry.Registry
 	endpoint string
+	pool     *p2p.PeerPool
 }
 
-func NewRegistryServer(endpoint string) (*RegistryServer, error) {
+func NewRegistryServer(endpoints []string) (*RegistryServer, error) {
+	// get local endpoint
+	localEndpoint := getLocalEndpoint(endpoints)
 
+	pool, err := p2p.NewPeerPool(endpoints)
+	if err != nil {
+		return nil, err
+	}
 	return &RegistryServer{
 		server:   grpc.NewServer(),
 		registry: registry.NewRegistry(),
-		endpoint: endpoint,
+		endpoint: localEndpoint,
+		pool:     pool,
 	}, nil
+}
+
+func getLocalEndpoint(endpoints []string) string {
+
+	if len(endpoints) == 0 {
+		return DefaultEndpoint
+	}
+
+	for _, endpoint := range endpoints {
+
+		if strings.HasPrefix(endpoint, utils.LocalIPAddress()) {
+			return endpoint
+		}
+	}
+	return DefaultEndpoint
 }
 
 // start registry server
