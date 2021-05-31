@@ -1,4 +1,4 @@
-package registry
+package client
 
 import (
 	"google.golang.org/grpc/naming"
