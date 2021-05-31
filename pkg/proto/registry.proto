@@ -23,7 +23,7 @@ service  RegistryService{
 
 message RegisterRequest {
 
-  ActionType action =1;
+  ReplicationType type =1;
   ServiceInstance instance =2;
 }
 
@@ -54,6 +54,7 @@ message RenewRequest{
   string  serviceName =2;
   string ip =3;
   int32 port =4;
+  ReplicationType type =5;
 }
 
 message RenewResponse{
@@ -67,6 +68,7 @@ message CancelRequest {
   string  serviceName =2;
   string ip =3;
   int32 port =4;
+  ReplicationType type =5;
 }
 
 message CancelResponse{
@@ -75,10 +77,9 @@ message CancelResponse{
   ServiceInstance instance =3;
 }
 
-enum ActionType {
-  None =0;
-  Normal =1;
-  Replication =2;
+enum ReplicationType {
+  No =0;
+  Yes =1;
 }
 
 message ServiceInstance{

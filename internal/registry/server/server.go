@@ -76,12 +76,12 @@ func (r *RegistryServer) Register(ctx context.Context, request *pb.RegisterReque
 	instance := registry.NewInstance(request.Instance)
 
 	in, _ := r.registry.Register(instance)
-	if request.Action == pb.ActionType_Normal {
+	if request.Type == pb.ReplicationType_Yes {
 		serverInstance := registry.NewServiceInstance(in)
 		r.pool.PushSyncMessage(&p2p.SyncMessage{
 			Type: p2p.SyncRegType,
 			Content: &pb.RegisterRequest{
-				Action:   pb.ActionType_Replication,
+				Type:     pb.ReplicationType_No,
 				Instance: serverInstance,
 			},
 		})
@@ -131,6 +131,19 @@ func (r *RegistryServer) Renew(ctx context.Context, request *pb.RenewRequest) (*
 			Message: e.Error(),
 		}, err
 	}
+
+	if request.Type == pb.ReplicationType_Yes {
+		r.pool.PushSyncMessage(&p2p.SyncMessage{
+			Type: p2p.SyncRenewType,
+			Content: &pb.RenewRequest{
+				Segment:     in.Segment,
+				ServiceName: in.ServiceName,
+				Ip:          in.Ip,
+				Port:        in.Port,
+				Type:        pb.ReplicationType_No,
+			},
+		})
+	}
 	return &pb.RenewResponse{
 		Code:     0,
 		Message:  "success",
@@ -148,6 +161,20 @@ func (r *RegistryServer) Cancel(ctx context.Context, request *pb.CancelRequest) 
 			Message: e.Error(),
 		}, err
 	}
+
+	if request.Type == pb.ReplicationType_Yes {
+		r.pool.PushSyncMessage(&p2p.SyncMessage{
+			Type: p2p.SyncCancelType,
+			Content: &pb.CancelRequest{
+				Segment:     in.Segment,
+				ServiceName: in.ServiceName,
+				Ip:          in.Ip,
+				Port:        in.Port,
+				Type:        pb.ReplicationType_No,
+			},
+		})
+	}
+
 	return &pb.CancelResponse{
 		Code:     0,
 		Message:  "success",

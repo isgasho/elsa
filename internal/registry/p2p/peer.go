@@ -12,9 +12,9 @@ import (
 type SyncType int32
 
 const (
-	SyncRegType    SyncType = 1 // sync reg event
-	SyncRenewType  SyncType = 2 // sync renew event
-	syncCancelType SyncType = 3 // sync cancel event
+	SyncRegType    SyncType = iota + 1 // sync reg event
+	SyncRenewType                      // sync renew event
+	SyncCancelType                     // sync cancel event
 )
 
 // sync the registry message to other peer
@@ -91,7 +91,7 @@ func (pool *PeerPool) handleSyncMessage(message *SyncMessage) {
 	case SyncRenewType:
 		log.Printf("handle the renew sync message ....")
 		pool.renew(message.Content.(*pb.RenewRequest))
-	case syncCancelType:
+	case SyncCancelType:
 		log.Printf("handle the cancel sync message ....")
 		pool.cancel(message.Content.(*pb.CancelRequest))
 	}

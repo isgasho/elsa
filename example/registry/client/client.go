@@ -43,7 +43,7 @@ func main() {
 		LatestTimestamp: time.Now().UnixNano(),
 	}
 	resp, err := client.Register(context.Background(), &pb.RegisterRequest{
-		Action:   pb.ActionType_Replication,
+		Type:     pb.ReplicationType_Yes,
 		Instance: instance,
 	})
 
@@ -53,7 +53,7 @@ func main() {
 	log.Printf("response:%#v", resp)
 
 	resp, err = client.Register(context.Background(), &pb.RegisterRequest{
-		Action:   pb.ActionType_Replication,
+		Type:     pb.ReplicationType_Yes,
 		Instance: instance2,
 	})
 
@@ -71,6 +71,7 @@ func main() {
 				ServiceName: "com.busgo.trade.proto.TradeService",
 				Ip:          "192.168.1.1",
 				Port:        8001,
+				Type:        pb.ReplicationType_Yes,
 			})
 
 			if err != nil {
