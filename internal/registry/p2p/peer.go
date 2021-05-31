@@ -7,6 +7,7 @@ import (
 	"google.golang.org/grpc"
 	"log"
 	"strings"
+	"time"
 )
 
 type SyncType int32
@@ -105,7 +106,9 @@ func (pool *PeerPool) reg(request *pb.RegisterRequest) {
 		if p.local {
 			continue
 		}
-		in, err := p.cli.Register(context.Background(), request)
+
+		ctx, _ := context.WithTimeout(context.Background(), time.Millisecond*500)
+		in, err := p.cli.Register(ctx, request)
 		if err != nil {
 			log.Printf("the sync register service instance  fail:%#v", err)
 			continue
@@ -121,7 +124,8 @@ func (pool *PeerPool) renew(request *pb.RenewRequest) {
 		if p.local {
 			continue
 		}
-		in, err := p.cli.Renew(context.Background(), request)
+		ctx, _ := context.WithTimeout(context.Background(), time.Millisecond*500)
+		in, err := p.cli.Renew(ctx, request)
 		if err != nil {
 			log.Printf("the sync renew service instance  fail:%#v", err)
 			continue
@@ -137,7 +141,8 @@ func (pool *PeerPool) cancel(request *pb.CancelRequest) {
 		if p.local {
 			continue
 		}
-		in, err := p.cli.Cancel(context.Background(), request)
+		ctx, _ := context.WithTimeout(context.Background(), time.Millisecond*500)
+		in, err := p.cli.Cancel(ctx, request)
 		if err != nil {
 			log.Printf("the sync cancel service instance  fail:%#v", err)
 			continue
