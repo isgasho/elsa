@@ -33,6 +33,10 @@ func NewRegistryStub(segment string, endpoints []string) (*RegistryStub, error) 
 
 }
 
+func (stub *RegistryStub) GetSegment() string {
+	return stub.segment
+}
+
 // register a service instance
 func (stub *RegistryStub) Register(ctx context.Context, serviceName, ip string, port int32) error {
 

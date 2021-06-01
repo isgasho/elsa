@@ -62,11 +62,11 @@ type ElsaNamingResolver struct {
 }
 
 // new elsa naming resolver
-func NewElsaNamingResolver(segment string, stub *RegistryStub) *ElsaNamingResolver {
+func NewElsaNamingResolver(registryServiceStub *RegistryStub) *ElsaNamingResolver {
 
 	return &ElsaNamingResolver{
-		segment:      segment,
-		registryStub: stub,
+		segment:      registryServiceStub.GetSegment(),
+		registryStub: registryServiceStub,
 		watchers:     make(map[string]*ElsaNamingWatcher),
 		RWMutex:      sync.RWMutex{},
 	}
@@ -82,7 +82,7 @@ func (resolver *ElsaNamingResolver) Resolve(target string) (naming.Watcher, erro
 	if ok {
 		return watcher, nil
 	}
-	watcher = NewElsaNamingWatcher(resolver.segment, target, resolver.registryStub)
+	watcher = NewElsaNamingWatcher(target, resolver.registryStub)
 	resolver.watchers[target] = watcher
 	return watcher, nil
 }
@@ -97,10 +97,10 @@ type ElsaNamingWatcher struct {
 }
 
 // new a elsa naming watcher
-func NewElsaNamingWatcher(segment, serviceName string, stub *RegistryStub) *ElsaNamingWatcher {
+func NewElsaNamingWatcher(serviceName string, stub *RegistryStub) *ElsaNamingWatcher {
 
 	watcher := &ElsaNamingWatcher{
-		segment:     segment,
+		segment:     stub.GetSegment(),
 		serviceName: serviceName,
 		stub:        stub,
 		updates:     make([]*naming.Update, 0),
