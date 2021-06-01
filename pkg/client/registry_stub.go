@@ -90,7 +90,10 @@ func (stub *RegistryStub) Renew(ctx context.Context, serviceName, ip string, por
 		Port:        port,
 	}
 	response, err := stub.cli.Renew(ctx, request)
-	if err != nil || response.Code != 0 {
+	if err != nil {
+		return true
+	}
+	if response.Code != 0 {
 		log.Printf("renew the service[segment:%s,serviceName:%s,ip:%s,port:%d] fail", stub.segment, serviceName, ip, port)
 		return false
 	}

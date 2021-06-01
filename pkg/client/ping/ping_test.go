@@ -10,7 +10,7 @@ import (
 // test new ping service stub
 func TestNewPingServiceStub(t *testing.T) {
 
-	stub, err := client.NewRegistryStub("dev", []string{"127.0.0.1:8005", "129.168.1.1:8005", "192.168.1.2:8005"})
+	stub, err := client.NewRegistryStub("dev", []string{"127.0.0.1:8005"})
 	if err != nil {
 		panic(err)
 	}

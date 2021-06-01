@@ -34,7 +34,7 @@ func NewElsaNamingWatcher(serviceName string, stub *RegistryStub) *ElsaNamingWat
 	}
 
 	go watcher.lookup()
-
+	watcher.refresh()
 	return watcher
 }
 
@@ -52,8 +52,6 @@ func (w *ElsaNamingWatcher) Close() {
 
 func (w *ElsaNamingWatcher) lookup() {
 
-	// start refresh
-	w.refresh()
 	ticker := time.Tick(RefreshDuration)
 	for {
 
